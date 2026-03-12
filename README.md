@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Handcrafted Haven
 
-## Getting Started
+Handcrafted Haven is a web marketplace for handmade products.
+The platform allows users to browse unique items, add them to a cart, and allows sellers to upload their products, product descriptions, and artisan information.
 
-First, run the development server:
+This project was developed by the WDD 430 Official group: Team 16, to build a modern e-commerce application.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Handcrafted Haven connects customers with sellers who create handmade products.
+Users can explore the marketplace, discover unique items, and purchase them directly from artisans.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The application includes authentication, product browsing, and shopping cart functionality.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+* Seller Profiles
+Authenticated sellers have dedicated profiles where they can showcase their craftsmanship, share their stories, and display a curated collection of their handcrafted items. Sellers can also add product descriptions to present their work to customers.
 
-To learn more about Next.js, take a look at the following resources:
+* Product Listings
+Artisans can list their handcrafted products on the platform, including detailed descriptions, pricing information, and product images.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Product Catalog and Filters
+Users can browse the product catalog and filter items by category, price range, or other relevant criteria to easily find products they are interested in.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Reviews and Ratings
+Users can leave ratings and write reviews for products, helping other customers make informed purchasing decisions.
 
-## Deploy on Vercel
+## Repository
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Clone the repository:
+git clone https://github.com/DonnyDianderas/handcrafted-haven
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Authors
+
+* John Ayomide Adebayo
+* Brantley Clifford Cragun
+* Donny Donald Dianderas Hernandez
+* Jacob Cannon Nielsen
+* Nicholus Turyamureba
+
+## Task Assignments
+
+John Ayomide Adebayo - xxxxxxxx
+ 
+* aaaa
+* aaaa
+
+Brantley Clifford Cragun - xxxxxxxx
+
+* aaaa
+* aaaa
+
+Donny Donald Dianderas Hernandez - xxxxxxxx
+
+* aaaa
+* aaaa
+
+Jacob Cannon Nielsen - xxxxxxxx
+
+* aaaa
+* aaaa
+
+Nicholus Turyamureba - xxxxxxxx
+
+* aaaa
+* aaaa
