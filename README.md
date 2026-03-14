@@ -41,27 +41,29 @@ git clone https://github.com/DonnyDianderas/handcrafted-haven
 
 ## Task Assignments
 
-John Ayomide Adebayo - xxxxxxxx
+John Ayomide Adebayo - Seller Authentication
  
-* aaaa
-* aaaa
+* Implement authentication for sellers.
+* Protect seller profile routes
 
-Brantley Clifford Cragun - xxxxxxxx
+Brantley Clifford Cragun - Catalog Browsing & Filtering
 
-* aaaa
-* aaaa
+* Build catalog page displaying products
+* Implement category and price filtering
 
-Donny Donald Dianderas Hernandez - xxxxxxxx
+Donny Donald Dianderas Hernandez - Product Listings Management 
 
-* aaaa
-* aaaa
+* Create product creation form
+* Store product data using server actions 
+* Display optimized product images
+* Link products to seller profile
 
-Jacob Cannon Nielsen - xxxxxxxx
+Jacob Cannon Nielsen - Reviews and Ratings System
 
-* aaaa
-* aaaa
+* Create rating and review submission form. 
+* Fetch and display reviews on product pages
 
-Nicholus Turyamureba - xxxxxxxx
+Nicholus Turyamureba - Artisan Profile & Story
 
-* aaaa
-* aaaa
+* Create artisan profile page structure
+* Fetch and display artisan story data
