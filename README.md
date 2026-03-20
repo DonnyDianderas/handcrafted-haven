@@ -31,6 +31,8 @@ Users can leave ratings and write reviews for products, helping other customers 
 Clone the repository:
 git clone https://github.com/DonnyDianderas/handcrafted-haven
 
+Vercel: https://handcrafted-haven-teal.vercel.app/
+
 ## Authors
 
 * John Ayomide Adebayo
