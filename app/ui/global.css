@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F5F2EB;  /* Parchment */
+  --foreground: #2B2B2B; /* Graphite */
+  --primary: #1E4D4F;  /* Dark Slate Grey */
+  --primary-foreground: #FFFFFF;
+  --secondary: #6A7F92;  /* Slate Grey */
+  --accent: #D89B4A;    /* Golden Apricot */
+  --accent-foreground: #1E1E1E;
+  --border: #E3DDD2;  /* Bone */
+}
