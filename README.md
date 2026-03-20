@@ -33,6 +33,7 @@ git clone https://github.com/DonnyDianderas/handcrafted-haven
 
 Vercel: https://handcrafted-haven-teal.vercel.app/
 
+https://www.figma.com/make/VhzPCBB7k8celKsa6gLXt5/Artisan-haven?t=h5L7IbzO4MjcQ131-1
 ## Authors
 
 * John Ayomide Adebayo
@@ -69,3 +70,4 @@ Nicholus Turyamureba - Artisan Profile & Story
 
 * Create artisan profile page structure
 * Fetch and display artisan story data
+
