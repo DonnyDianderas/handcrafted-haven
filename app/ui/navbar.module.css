@@ -1,0 +1,15 @@
+.header {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  background-color: #F5F2EB;
+  padding: 16px 24px;
+  border: 1px solid #E3DDD2;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.navContainer { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.nav { display: flex; gap: 20px; }
+.nav a { font-weight: 600; color: #1E4D4F; text-decoration: none; font-size: 14px; }

@@ -1,4 +1,4 @@
-import '@/app/ui/global.css';
+import '@/app/global.css';
 import { inter, playfair } from "@/app/ui/fonts";
 import type { Metadata } from "next";
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: 'Handcrafted Haven',
   },
   description: "A curated marketplace for unique, artisan-made goods.",
-  metadataBase: new URL('https://handcrafted-haven.vercel.app'), // I´ll change it with my link in vercel
+  metadataBase: new URL('https://handcrafted-haven-teal.vercel.app/'), 
 };
 
 export default function RootLayout({
@@ -17,9 +17,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
       <body
-        className={`${inter.className} ${playfair.variable} antialiased bg-background text-foreground`}
+        style={{
+          fontFamily: 'var(--font-inter), sans-serif',
+          backgroundColor: 'var(--background)',
+          color: 'var(--foreground)',
+          margin: 0,
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
+        }}
       >
         {children}
       </body>

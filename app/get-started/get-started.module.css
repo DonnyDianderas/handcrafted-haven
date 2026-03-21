@@ -1,0 +1,6 @@
+.main { padding: 16px; }
+.container { padding: 60px 5%; display: flex; justify-content: center; }
+.card { background: #E5E2D9; padding: 48px; border-radius: 32px; text-align: center; max-width: 500px; }
+.button { width: 100%; background: var(--primary); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: 600; margin: 16px 0; }
+.outlineButton { width: 100%; background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 16px; border-radius: 12px; font-weight: 600; }
+.divider { margin: 32px 0; border: 0; border-top: 1px solid var(--border); }
