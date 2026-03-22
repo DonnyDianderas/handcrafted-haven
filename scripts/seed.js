@@ -1,82 +1,3 @@
-// require('dotenv').config();
-// const { db } = require('@vercel/postgres');
-
-// const productsData = [
-//   { name: 'Artisan Ceramics', price: 45.00, category: 'pottery', image_url: 'https://images.unsplash.com/photo-1761062404254-8e19c9e77d6f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYW5kY3JhZnRlZCUyMHBvdHRlcnklMjBjZXJhbWljfGVufDF8fHx8MTc3MzI5MTcxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral', seller: 'Jhon Jackson' },
-//   { name: 'Wooden Bowl', price: 65.00, category: 'woodwork', image_url: 'https://images.unsplash.com/photo-1602928321679-560bb453f190?q=80&w=1080&auto=format&fit=crop', seller: 'Alfredo Naucapoma' },
-//   { name: 'Handwoven Textile', price: 85.00, category: 'textiles', image_url: 'https://images.unsplash.com/photo-1760328715296-9714daa8a737?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYW5kbWFkZSUyMHRleHRpbGUlMjB3ZWF2aW5nfGVufDF8fHx8MTc3MzI5MTcxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral', seller: 'Ana López' },
-//   { name: 'Handcrafted Jewelry', price: 55.00, category: 'jewelry', image_url: 'https://images.unsplash.com/photo-1715374033196-0ff662284a7e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYW5kY3JhZnRlZCUyMGpld2VscnklMjBiZWFkc3xlbnwxfHx8fDE3NzMyOTE3MTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral', seller: 'Margaret Newman' },
-//   { name: 'Ceramic Basin', price: 38.00, category: 'pottery', image_url: 'https://images.unsplash.com/photo-1610701596295-4dc5d6289214?q=80&w=1080&auto=format&fit=crop', seller: 'Jhon Jackson' },
-//   { name: 'Woven Basket', price: 42.00, category: 'textiles', image_url: 'https://images.unsplash.com/photo-1596626417050-39c7f6ddd2c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b3ZlbiUyMGJhc2tldCUyMGNyYWZ0fGVufDF8fHx8MTc3MzIwNzAxNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral', seller: 'Ana López' },
-//   { name: 'Silver Earrings', price: 75.00, category: 'jewelry', image_url: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1080&auto=format&fit=crop', seller: 'Margaret Newman' },
-//   { name: 'Wooden Sculpture', price: 120.00, category: 'woodwork', image_url: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1080&auto=format&fit=crop', seller: 'Alfredo Naucapoma' },
-//   { name: 'Minimalist Mug', price: 25.00, category: 'pottery', image_url: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=1080&auto=format&fit=crop', seller: 'Jhon Jackson' },
-//   { name: 'Traditional Pattern Textile', price: 150.00, category: 'textiles', image_url: 'https://images.unsplash.com/photo-1655149238677-9b5cb1a0afc6?q=80&w=1080&auto=format&fit=crop', seller: 'Ana López' },
-// ];
-
-// async function seedDatabase() {
-//   const client = await db.connect();
-
-//   try {
-//     console.log('--- Starting Handcrafted Haven Seed ---');
-    
-//     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-
-//     await client.sql`
-//       CREATE TABLE IF NOT EXISTS users (
-//         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-//         name VARCHAR(255) NOT NULL,
-//         email TEXT NOT NULL UNIQUE,
-//         password TEXT NOT NULL
-//       );
-//     `;
-
-//     await client.sql`
-//       CREATE TABLE IF NOT EXISTS products (
-//         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-//         artisan_id UUID NOT NULL,
-//         name VARCHAR(255) NOT NULL,
-//         description TEXT DEFAULT 'A unique handcrafted treasure made with passion.',
-//         price DECIMAL(10, 2) NOT NULL,
-//         image_url TEXT NOT NULL,
-//         category VARCHAR(50) CHECK (category IN ('pottery', 'textiles', 'woodwork', 'jewelry')),
-//         FOREIGN KEY (artisan_id) REFERENCES users(id)
-//       );
-//     `;
-
-//     console.log('Inserting data...');
-
-//     for (const item of productsData) {
-      
-//       const sellerEmail = `${item.seller.toLowerCase().replace(/\s/g, '.')}@example.com`;
-
-//       const userResult = await client.sql`
-//         INSERT INTO users (name, email, password)
-//         VALUES (${item.seller}, ${sellerEmail}, 'password123')
-//         ON CONFLICT (email) DO UPDATE SET name = EXCLUDED.name
-//         RETURNING id;
-//       `;
-      
-//       const artisanId = userResult.rows[0].id;
-
-//       await client.sql`
-//         INSERT INTO products (artisan_id, name, price, image_url, category)
-//         VALUES (${artisanId}, ${item.name}, ${item.price}, ${item.image_url}, ${item.category});
-//       `;
-//     }
-
-//     console.log('Success! Database ready with 10 products.');
-
-//   } catch (error) {
-//     console.error('Error during seed execution:', error);
-//     throw error;
-//   } finally {
-//     await client.end();
-//   }
-// }
-
-// seedDatabase();
-
 require('dotenv').config();
 const { db } = require('@vercel/postgres');
 
@@ -169,7 +90,6 @@ async function seedDatabase() {
   try {
     console.log('--- Reseeding Handcrafted Haven with Descriptions ---');
     
-    // Opcional: Limpiar tablas para evitar duplicados si quieres empezar de cero
     // await client.sql`DROP TABLE IF EXISTS products;`;
     // await client.sql`DROP TABLE IF EXISTS users CASCADE;`;
 

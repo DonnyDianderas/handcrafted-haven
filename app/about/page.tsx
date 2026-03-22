@@ -1,4 +1,3 @@
-// app/about/page.tsx
 import styles from "./about.module.css";
 
 export default function AboutPage() {

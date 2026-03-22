@@ -20,15 +20,14 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
       <body style={{ margin: 0, backgroundColor: 'var(--background)' }}>
-        {/* El Navbar ahora es global y no se mueve al navegar */}
+       
         <Navbar />
-        
-        {/* Este main envuelve a TODAS las páginas con el mismo estilo exacto */}
+               
         <main 
           style={{ 
             maxWidth: '100%', 
             overflowX: 'hidden', 
-            padding: '0 16px 40px 16px', // El padding que te gustaba de Home
+            padding: '0 16px 40px 16px', 
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh'
