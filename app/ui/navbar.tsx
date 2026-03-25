@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import HandcraftedLog from "@/app/ui/handcrafted-logo";
+import HandcraftedLogo from "@/app/ui/handcrafted-logo";
 import Button from './button';
 import styles from './navbar.module.css';
 
 export default function Navbar() {
   return (
     <header className={styles.header}>
-      <HandcraftedLog />
+      <HandcraftedLogo />
       <div className={styles.navContainer}>
         <nav className={styles.nav}>
           <Link href="/">Home</Link>
