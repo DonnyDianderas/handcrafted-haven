@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { db } = require('@vercel/postgres');
+const bcrypt = require('bcryptjs');
 
 const productsData = [
   { 
@@ -119,11 +120,12 @@ async function seedDatabase() {
 
     for (const item of productsData) {
       const sellerEmail = `${item.seller.toLowerCase().replace(/\s/g, '.')}@example.com`;
+      const hashedPassword = await bcrypt.hash('password123', 10);
 
       const userResult = await client.sql`
         INSERT INTO users (name, email, password)
-        VALUES (${item.seller}, ${sellerEmail}, 'password123')
-        ON CONFLICT (email) DO UPDATE SET name = EXCLUDED.name
+        VALUES (${item.seller}, ${sellerEmail}, ${hashedPassword})
+        ON CONFLICT (email) DO UPDATE SET name = EXCLUDED.name, password = EXCLUDED.password
         RETURNING id;
       `;
       
