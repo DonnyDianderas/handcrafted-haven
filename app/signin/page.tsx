@@ -1,9 +1,3 @@
-// app/signin/page.tsx
-// Replace the ENTIRE content of this file with what is below.
-//
-// We add 'use client' because we need two client-side features:
-// 1. useActionState — to connect the form to our server action
-// 2. Showing a loading state while the server processes the login
 
 'use client';
 
@@ -14,15 +8,10 @@ import Link from 'next/link';
 import HandcraftedLogo from '@/app/ui/handcrafted-logo';
 
 export default function SignInPage() {
-  // useActionState is a React hook that links a form to a server action.
-  //
-  // It gives us three things:
-  // - errorMessage : whatever our authenticate() function returns (the error string, or undefined)
-  // - formAction   : the function we put in the form's action attribute
-  // - isPending    : true while the server is processing — useful for a loading state
+  
   const [errorMessage, formAction, isPending] = useActionState(
-    authenticate, // the server action to call on submit
-    undefined,    // the initial value of errorMessage (no error at start)
+    authenticate,
+    undefined,
   );
 
   return (

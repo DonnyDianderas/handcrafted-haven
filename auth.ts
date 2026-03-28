@@ -67,22 +67,15 @@ export const { auth, signIn, signOut } = NextAuth({
   ],
 
   callbacks: {
-    // These two callbacks ensure the artisan's database ID is stored in
-    // their session token and accessible as session.user.id
-    //
-    // Why do we need this?
-    // By default, NextAuth only puts name, email, and image in the session.
-    // We need the ID so that on the profile page we can check:
-    // "Is the logged-in person the owner of THIS profile?"
-
+    
     jwt({ token, user }) {
-      // When the user first logs in, 'user' is available — store their ID
+      // Add the user's ID to the token
       if (user) token.id = user.id;
       return token;
     },
 
     session({ session, token }) {
-      // On every request, put the ID from the token into the session object
+      // Add the user's ID to the session object
       if (token.id) session.user.id = token.id as string;
       return session;
     },

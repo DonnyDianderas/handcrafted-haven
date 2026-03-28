@@ -1,10 +1,8 @@
-// app/register/page.tsx
-// CREATE this file at that path — it is a brand new page.
 'use client';
 
 import { useActionState } from 'react';
 import { registerArtisan } from '@/app/lib/actions';
-import styles from '@/app/signin/signin.module.css'; // reuse the sign-in card styles
+import styles from '@/app/signin/signin.module.css'; // reusing the sign-in card styles
 import Link from 'next/link';
 import HandcraftedLogo from '@/app/ui/handcrafted-logo';
 
@@ -32,7 +30,7 @@ export default function RegisterPage() {
                     {/* Full name */}
                     <input
                         type="text"
-                        name="name"          // formData.get('name') reads this
+                        name="name"          
                         placeholder="Full name"
                         className={styles.input}
                         required
@@ -42,7 +40,7 @@ export default function RegisterPage() {
                     {/* Email */}
                     <input
                         type="email"
-                        name="email"         // formData.get('email') reads this
+                        name="email"        
                         placeholder="Email"
                         className={styles.input}
                         required
@@ -52,7 +50,7 @@ export default function RegisterPage() {
                     {/* Password */}
                     <input
                         type="password"
-                        name="password"      // formData.get('password') reads this
+                        name="password"      
                         placeholder="Password (min 6 characters)"
                         className={styles.input}
                         required
@@ -63,7 +61,7 @@ export default function RegisterPage() {
                     {/* Confirm password */}
                     <input
                         type="password"
-                        name="confirm"       // formData.get('confirm') reads this
+                        name="confirm"       
                         placeholder="Confirm password"
                         className={styles.input}
                         required

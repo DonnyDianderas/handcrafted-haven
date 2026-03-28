@@ -71,9 +71,6 @@ export async function authenticate(
 }
 
 // ── Register a new artisan ────────────────────────────────────────────────────
-// This server action is called from the /register page.
-// It validates the input, hashes the password, saves the user,
-// then signs them in automatically so they land on the home page.
 export async function registerArtisan(
   prevState: string | undefined,
   formData: FormData,
@@ -107,8 +104,6 @@ export async function registerArtisan(
   }
 
   // ── Step 3: Hash the password before storing it ──────────────────────────
-  // NEVER store a plain-text password. bcrypt scrambles it so that even
-  // if the database is leaked, passwords cannot be read.
   const bcrypt = await import('bcryptjs');
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -123,8 +118,6 @@ export async function registerArtisan(
   }
 
   // ── Step 5: Sign them in automatically right after registering ───────────
-  // We pass the PLAIN password here — signIn() calls authorize() in auth.ts
-  // which runs bcrypt.compare() internally.
   try {
     await signIn('credentials', {
       email,
@@ -135,16 +128,11 @@ export async function registerArtisan(
     if (error instanceof AuthError) {
       return 'Account created! Please sign in.';
     }
-    throw error; // Re-throw the internal redirect — this is expected on success
+    throw error;
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// NEW: Logout (Sign Out)
-//
-// This is called from a form's action attribute in the Navbar.
-// After signing out, the artisan is sent to the home page.
-// ─────────────────────────────────────────────────────────────────────────────
+// ── Logout (Sign Out) ───────────────────────────────────────────────────────
 export async function logout() {
   await signOut({ redirectTo: '/' });
 }
