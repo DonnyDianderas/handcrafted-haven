@@ -37,9 +37,16 @@ export default async function Navbar() {
         {user ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {/* Show the artisan's name so they know they are logged in */}
-            <span style={{ fontSize: '14px', color: '#1E4D4F', fontWeight: 600 }}>
-              {user.name}
-            </span>
+            <Link href="/dashboard" style={{ textDecoration: 'none' }}>
+              <span style={{ 
+                fontSize: '14px', 
+                color: '#1E4D4F', 
+                fontWeight: 600,
+                cursor: 'pointer' 
+              }}>
+                {user.name}
+              </span>
+            </Link>
 
             {/*
              * Sign Out is a form with a server action.

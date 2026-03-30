@@ -46,8 +46,14 @@ export default async function ArtisanProfilePage({ params }: PageProps) {
           {artisan.name}
         </h1>
         <p className={styles.description}>
-          We are currently building the showcase for this artisan.
-          Soon you will be able to see their full story and handcrafted collection here.
+          {artisan.biography ? (
+            artisan.biography
+          ) : (
+            <>
+              We are currently building the showcase for this artisan.
+              Soon you will be able to see their full story and handcrafted collection here.
+            </>
+          )}
         </p>
       </header>
 

@@ -20,7 +20,7 @@ export async function fetchProductById(id: string) {
 export async function fetchArtisanById(id: string) {
   try {
     const data = await sql`
-      SELECT id, name FROM users WHERE id = ${id}
+      SELECT id, name, email, biography FROM users WHERE id = ${id}
     `;
     return data.rows[0];
   } catch (error) {

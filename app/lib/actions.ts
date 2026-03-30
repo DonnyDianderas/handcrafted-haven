@@ -136,3 +136,28 @@ export async function registerArtisan(
 export async function logout() {
   await signOut({ redirectTo: '/' });
 }
+
+// ... (tus funciones anteriores: createProduct, authenticate, registerArtisan, logout)
+
+// ── Update Artisan Profile (Biography and Name) ─────────────────────────────
+export async function updateArtisanProfile(
+  id: string, 
+  formData: FormData
+) {
+  const name = formData.get('name') as string;
+  const biography = formData.get('biography') as string;
+
+  try {
+    await sql`
+      UPDATE users
+      SET name = ${name}, biography = ${biography}
+      WHERE id = ${id}
+    `;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to update profile.');
+  }
+
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
+}
