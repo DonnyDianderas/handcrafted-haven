@@ -11,7 +11,7 @@ export default async function Page() {
   const session = await auth();
   const userId = session?.user?.id;
 
-  // If  there is no user, we shouldn't show the form
+
   if (!userId) {
     redirect('/login');
   }
