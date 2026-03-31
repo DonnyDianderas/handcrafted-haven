@@ -1,0 +1,12 @@
+.primary, .outline {
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+.primary { background-color: #1E4D4F; color: white; border: none; }
+.outline { background-color: white; color: #1E4D4F; border: 2px solid #1E4D4F; }
+.primary:hover, .outline:hover { transform: scale(1.02); }

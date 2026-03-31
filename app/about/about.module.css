@@ -1,0 +1,4 @@
+.main { padding: 16px; }
+.container { padding: 80px 5%; display: flex; justify-content: center; }
+.content { max-width: 700px; text-align: center; line-height: 1.8; color: var(--foreground); }
+.content h1 { color: var(--primary); font-size: 48px; }

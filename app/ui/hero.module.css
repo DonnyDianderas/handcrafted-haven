@@ -1,0 +1,19 @@
+.hero {
+  width: 100%;
+  background-color: #E5E2D9;
+  padding: 60px 5%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  margin-top: 24px;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+.content { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 24px; }
+.title { font-size: clamp(40px, 8vw, 80px); line-height: 1.1; color: #2B2B2B; margin: 0; }
+.description { font-size: 18px; color: #6A7F92; max-width: 500px; margin: 0; }
+.buttonGroup { display: flex; gap: 16px; flex-wrap: wrap; }
+.imageWrapper { flex: 1; min-width: 300px; display: flex; justify-content: center; }
+.imageContainer { position: relative; width: 100%; max-width: 550px; aspect-ratio: 4/3; border-radius: 24px; overflow: hidden; }
+.img { object-fit: cover; }

@@ -1,6 +1,7 @@
-import '@/app/ui/global.css';
+import '@/app/global.css';
 import { inter, playfair } from "@/app/ui/fonts";
 import type { Metadata } from "next";
+import Navbar from "@/app/ui/navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
     default: 'Handcrafted Haven',
   },
   description: "A curated marketplace for unique, artisan-made goods.",
-  metadataBase: new URL('https://handcrafted-haven.vercel.app'), // I´ll change it with my link in vercel
+  metadataBase: new URL('https://handcrafted-haven-teal.vercel.app/'), 
 };
 
 export default function RootLayout({
@@ -17,11 +18,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body
-        className={`${inter.className} ${playfair.variable} antialiased bg-background text-foreground`}
-      >
-        {children}
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <body style={{ margin: 0, backgroundColor: 'var(--background)' }}>
+       
+        <Navbar />
+               
+        <main 
+          style={{ 
+            maxWidth: '100%', 
+            overflowX: 'hidden', 
+            padding: '0 16px 40px 16px', 
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh'
+          }}
+        >
+          {children}
+        </main>
       </body>
     </html>
   );
