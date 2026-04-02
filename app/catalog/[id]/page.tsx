@@ -46,6 +46,13 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <p className={styles.description}>{product.description}</p>
           
           <button className={`${styles.buyButton} ${playfair.className}`}>Add to Cart</button>
+
+          <p className={styles.review}>
+            Already bought one? {' '}
+            <Link href={`/catalog/${id}/review`}>
+              <span>Leave a Review!</span>
+            </Link>
+          </p>
         </div>
       </div>
     </section>

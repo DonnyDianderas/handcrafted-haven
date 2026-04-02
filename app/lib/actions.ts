@@ -161,3 +161,31 @@ export async function updateArtisanProfile(
   revalidatePath('/dashboard');
   redirect('/dashboard');
 }
+
+// Create Review from Form ----------------------------------------------------
+export async function createReview(
+  id: string,
+  formData: FormData
+) {
+  const rating = Number(formData.get("rating") as string);
+  let reviewText = (formData.get("review-text") as string)?.trim();
+
+  try {
+    if (!rating)
+      throw new Error("A rating is required.")
+    if (rating < 1 || rating > 5)
+      throw new Error("Rating is out of bounds: ratings must be between 1 and 5 inclusive.");
+    if (!reviewText)
+      reviewText = "NULL";
+
+    await sql`
+      INSERT INTO reviews (product_id, rating, review_text)
+      VALUES (${id}, ${rating}, ${reviewText})
+    `;
+  } catch (e) {
+    console.error((e as Error).message);
+  }
+
+  revalidatePath(`/catalog/${id}`);
+  redirect(`/catalog/${id}`);
+}
