@@ -3,21 +3,24 @@ import Link from 'next/link';
 import { auth } from '@/auth';
 import styles from '@/app/ui/dashboard/dashboard.module.css';
 import { redirect } from 'next/navigation';
+import ThemeToggle from '@/app/ui/ThemeToggle';
+import { ThemeProvider } from '@/app/context/ThemeContext';
 
-export default async function DashboardPage() {
-  const session = await auth();
+interface DashboardContentProps {
+  userName: string;
+  session: any;
+}
 
-  if (!session?.user) {
-    redirect('/login');
-  }
-
-  const userName = session.user.name || 'Artisan';
-
+function DashboardContent({ userName, session }: DashboardContentProps) {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+          <div></div>
+          <ThemeToggle />
+        </div>
         <h1 className={`${playfair.className} ${styles.title}`}>
-          Welcome back, {userName}
+          Welcome back, <span className={styles.artistName}>{userName}</span>
         </h1>
         <p className={styles.subtitle}>
           Manage your handcrafted products and your artisan story.
@@ -28,8 +31,8 @@ export default async function DashboardPage() {
         {/* Card:Manage Products */}
         <section className={`${styles.card} ${styles.cardHighlight}`}>
           <div className={styles.cardContent}>
-             <h2 className={playfair.className}>My Products</h2>
-             <p>Display your latest creations to the world.</p>
+            <h2 className={playfair.className}>My Products</h2>
+            <p>Display your latest creations to the world.</p>
           </div>
           <Link href="/dashboard/products/create" className={styles.fullWidth}>
             <button className={styles.primaryButton}>+ Add New Product</button>
@@ -53,5 +56,21 @@ export default async function DashboardPage() {
         </section>
       </div>
     </main>
+  );
+}
+
+export default async function DashboardPage() {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect('/login');
+  }
+
+  const userName = session.user.name || 'Artisan';
+
+  return (
+    <ThemeProvider>
+      <DashboardContent userName={userName} session={session} />
+    </ThemeProvider>
   );
 }
