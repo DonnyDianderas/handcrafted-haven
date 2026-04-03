@@ -1,15 +1,77 @@
+/* CSS Variables for Theme */
+:root[data-theme="light"] {
+  --navbar-bg: #F5F2EB;
+  --navbar-border: #E3DDD2;
+  --nav-text: #1E4D4F;
+  --nav-text-hover: #4ecdc4;
+}
+
+:root[data-theme="dark"] {
+  --navbar-bg: #2d2d2d;
+  --navbar-border: #404040;
+  --nav-text: #e0e0e0;
+  --nav-text-hover: #4ecdc4;
+}
+
 .header {
   margin-top: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
-  background-color: #F5F2EB;
+  background-color: var(--navbar-bg);
   padding: 16px 24px;
-  border: 1px solid #E3DDD2;
+  border: 1px solid var(--navbar-border);
   flex-wrap: wrap;
   gap: 20px;
+  transition: all 0.3s ease;
 }
-.navContainer { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.nav { display: flex; gap: 20px; }
-.nav a { font-weight: 600; color: #1E4D4F; text-decoration: none; font-size: 14px; }
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  font-weight: 600;
+  color: var(--nav-text);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--nav-text-hover);
+}
+
+.artistName {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+  font-weight: 700;
+  display: inline-block;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}

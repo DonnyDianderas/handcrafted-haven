@@ -38,12 +38,7 @@ export default async function Navbar() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {/* Show the artisan's name so they know they are logged in */}
             <Link href="/dashboard" style={{ textDecoration: 'none' }}>
-              <span style={{ 
-                fontSize: '14px', 
-                color: '#1E4D4F', 
-                fontWeight: 600,
-                cursor: 'pointer' 
-              }}>
+              <span className={styles.artistName}>
                 {user.name}
               </span>
             </Link>

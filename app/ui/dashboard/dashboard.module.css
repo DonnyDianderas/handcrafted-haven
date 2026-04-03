@@ -1,7 +1,33 @@
+/* CSS Variables for Theme */
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #fdfbf7;
+  --bg-card: #ffffff;
+  --text-primary: #1E4D4F;
+  --text-secondary: #666666;
+  --border-color: #eeeeee;
+  --border-highlight: #1E4D4F;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-card: #242424;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --border-color: #404040;
+  --border-highlight: #4ecdc4;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
 .container {
   padding: 60px 5%;
   max-width: 1100px;
   margin: 0 auto;
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 .header {
@@ -11,13 +37,40 @@
 
 .title {
   font-size: 3rem;
-  color: var(--primary);
+  color: var(--text-primary);
   margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.artistName {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+  font-weight: 700;
+  display: inline-block;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .subtitle {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 1.1rem;
+  transition: color 0.3s ease;
 }
 
 .grid {
@@ -27,19 +80,25 @@
 }
 
 .card {
-  background: white;
+  background: var(--bg-card);
   padding: 40px;
   border-radius: 12px;
-  border: 1px solid #eee;
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow);
 }
 
 .cardHighlight {
-  border: 2px solid var(--primary);
-  background-color: #fdfbf7;
+  border: 2px solid var(--border-highlight);
+  background-color: var(--bg-secondary);
 }
 
 .cardContent {
@@ -49,13 +108,18 @@
 .cardContent h2 {
   font-size: 1.8rem;
   margin-bottom: 15px;
-  color: var(--primary);
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
+.cardContent p {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
 
 .primaryButton {
   width: 100%;
-  background-color: var(--primary);
+  background: linear-gradient(135deg, var(--border-highlight), #45b7d1);
   color: white;
   padding: 14px;
   border: none;
@@ -63,25 +127,34 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
 }
 
 .secondaryButton {
   width: 100%;
   background-color: transparent;
-  color: var(--primary);
+  color: var(--border-highlight);
   padding: 14px;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--border-highlight);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  border-radius: 8px;
 }
 
 .secondaryButton:hover {
-  background-color: var(--primary);
+  background-color: var(--border-highlight);
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
 }
 
 .buttonGroupVertical {
