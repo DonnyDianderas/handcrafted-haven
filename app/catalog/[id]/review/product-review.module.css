@@ -1,0 +1,30 @@
+.label {
+    display: block;
+    padding: 8px 8px 8px 0;
+}
+
+.select {
+    display: block;
+    text-align: center;
+    width: calc(100% - 16px);
+    margin: 8px 0 0 8px;
+    padding: 8px;
+    border-radius: 8px;
+    background: #fff;
+    color: #000;
+    font-size: 24px;
+}
+
+.textarea {
+    display: block;
+    width: calc(100% - 32px);
+    min-height: 96px;
+    resize: vertical;
+    overflow: auto;
+    margin: 8px 0 8px 8px;
+    padding: 8px;
+    border-radius: 8px;
+    border-bottom-right-radius: 0;
+    background: #fff;
+    color: #000;
+}
