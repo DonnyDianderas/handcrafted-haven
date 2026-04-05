@@ -11,7 +11,6 @@ export const authConfig = {
             const isLoggedIn = !!auth?.user;
 
             const isProtectedPage =
-                nextUrl.pathname.startsWith('/artisans') ||
                 nextUrl.pathname.startsWith('/dashboard');
                 
                 const isOnRegister = nextUrl.pathname === '/register';
