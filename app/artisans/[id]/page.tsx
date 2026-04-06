@@ -4,7 +4,6 @@ import { playfair } from '@/app/ui/fonts';
 import styles from './profile.module.css';
 import Link from 'next/link';
 import { fetchArtisanById } from '@/app/lib/data';
-import { auth } from '@/auth'; // import auth function
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -13,34 +12,17 @@ interface PageProps {
 export default async function ArtisanProfilePage({ params }: PageProps) {
   const { id } = await params;
 
-  const [artisan, session] = await Promise.all([
-    fetchArtisanById(id),
-    auth(),
-  ]);
+  const artisan = await fetchArtisanById(id);
 
   if (!artisan) {
     notFound();
   }
 
-  const isOwner = session?.user?.id === artisan.id;
-
   return (
     <main className={styles.container}>
       <header className={styles.header}>
 
-        {/* Only show this greeting if the logged-in user owns this profile */}
-        {isOwner && (
-          <p
-            style={{
-              color: '#1E4D4F',
-              fontWeight: 600,
-              marginBottom: '8px',
-              fontSize: '15px',
-            }}
-          >
-            Welcome back!
-          </p>
-        )}
+       
 
         <h1 className={`${playfair.className} ${styles.title}`}>
           {artisan.name}
