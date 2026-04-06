@@ -9,7 +9,7 @@ export default function GetStartedPage() {
         <h2 className={playfair.className}>Join the Community</h2>
         <p>Are you an artisan? Start selling your handcrafted treasures today.</p>
         
-        <Link href="/register">
+        <Link href="/register/artisan">
           <button className={styles.button}>Create Artisan Account</button>
         </Link>
         
@@ -17,7 +17,7 @@ export default function GetStartedPage() {
         
         <p>Just looking for unique goods?</p>
         
-        <Link href="/register">
+        <Link href="/register/customer">
           <button className={styles.outlineButton}>Create Customer Account</button>
         </Link>
       </div>

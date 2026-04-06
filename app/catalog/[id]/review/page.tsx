@@ -6,6 +6,7 @@ import { playfair } from '@/app/ui/fonts';
 import styles from "../product-detail.module.css";
 import reviewStyles from "./product-review.module.css";
 import { createReview } from "@/app/lib/actions";
+import { auth } from "@/auth";
 
 interface PageProps {
     params: Promise<{ id: string }>;
@@ -16,11 +17,15 @@ export default async function ReviewPage({ params }: PageProps) {
     const product = await fetchProductById(id);
     const formAction = createReview.bind(null, id);
 
+    const session = await auth();
+
     if (!product)
         notFound();
 
     return (
         <form className={styles.container} action={formAction}>
+            <input type="hidden" name="customerId" value={session?.user?.id} />
+            
             <div className={styles.grid}>
                 <div className={styles.imageWrapper}>
                     <Image
@@ -31,7 +36,7 @@ export default async function ReviewPage({ params }: PageProps) {
                         priority
                     />
                 </div>
-
+                
                 <div>
                     <p className={styles.category}>{product.category || "Handcrafted"}</p>
                     <h1 className={styles.title}>{product.name} Review</h1>

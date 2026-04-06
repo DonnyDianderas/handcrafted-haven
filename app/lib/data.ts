@@ -28,3 +28,24 @@ export async function fetchArtisanById(id: string) {
     throw new Error('Failed to fetch artisan.');
   }
 }
+
+// Fetch reviews for a specific customer
+export async function fetchReviewsByCustomerId(customerId: string) {
+  try {
+    const data = await sql`
+      SELECT 
+        reviews.id,
+        reviews.rating,
+        reviews.review_text,
+        products.name as product_name,
+        products.image_url
+      FROM reviews
+      JOIN products ON reviews.product_id = products.id
+      WHERE reviews.customer_id = ${customerId}
+    `;
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch user reviews.');
+  }
+}

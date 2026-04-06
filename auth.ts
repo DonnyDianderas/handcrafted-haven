@@ -11,13 +11,25 @@ type DBUser = {
   name: string;
   email: string;
   password: string;
+  role?: string;
 };
 
 // fetch a user from the database by their email address
 async function getUser(email: string): Promise<DBUser | null> {
   try {
-    const result = await sql`SELECT * FROM users WHERE email = ${email}`;
-    return (result.rows[0] as DBUser) || null;
+    // Artisans (users) ──────────────
+    const artisanResult = await sql`SELECT *, 'artisan' as role FROM users WHERE email = ${email}`;
+    if (artisanResult.rows.length > 0) {
+      return artisanResult.rows[0] as DBUser;
+    }
+
+    // Customers
+    const customerResult = await sql`SELECT *, 'customer' as role FROM customers WHERE email = ${email}`;
+    if (customerResult.rows.length > 0) {
+      return customerResult.rows[0] as DBUser;
+    }
+    
+    return null;
   } catch (error) {
     console.error('Failed to fetch user from database:', error);
     return null;
@@ -70,13 +82,19 @@ export const { auth, signIn, signOut } = NextAuth({
     
     jwt({ token, user }) {
       // Add the user's ID to the token
-      if (user) token.id = user.id;
+      if (user) {
+        token.id = user.id;
+        token.role = (user as DBUser).role;
+      }
       return token;
     },
 
     session({ session, token }) {
       // Add the user's ID to the session object
-      if (token.id) session.user.id = token.id as string;
+      if (token.id) {
+        session.user.id = token.id as string;
+        (session.user as any).role = token.role; 
+      }
       return session;
     },
   },

@@ -1,6 +1,3 @@
-// app/ui/navbar.tsx
-// Replace the ENTIRE content of this file with what is below.
-//
 // Changes from the original:
 // 1. The function is now `async` so it can call auth()
 // 2. We check if the user is logged in and show different content accordingly
@@ -18,6 +15,10 @@ import { logout } from '@/app/lib/actions';    // ← server action to sign out
 export default async function Navbar() {
   const session = await auth();
   const user = session?.user; // user is null/undefined if no one is logged in
+
+const dashboardHref = (user as any)?.role === 'customer' 
+    ? '/dashboard/customer' 
+    : '/dashboard';
 
   return (
     <header className={styles.header}>
@@ -37,7 +38,7 @@ export default async function Navbar() {
         {user ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {/* Show the artisan's name so they know they are logged in */}
-            <Link href="/dashboard" style={{ textDecoration: 'none' }}>
+            <Link href={dashboardHref} style={{ textDecoration: 'none' }}>
               <span className={styles.artistName}>
                 {user.name}
               </span>

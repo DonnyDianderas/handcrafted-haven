@@ -1,32 +1,26 @@
 'use client';
 
 import { useActionState } from 'react';
-import { registerArtisan } from '@/app/lib/actions';
-import styles from '@/app/signin/signin.module.css'; // reusing the sign-in card styles
+import { registerCustomer } from '@/app/lib/actions'; 
+import styles from '@/app/signin/signin.module.css';
 import Link from 'next/link';
-import HandcraftedLogo from '@/app/ui/handcrafted-logo';
 
-export default function RegisterPage() {
-    // useActionState works exactly like on the sign-in page:
-    // errorMessage → whatever registerArtisan() returns if something goes wrong
-    // formAction   → connect to the <form action={...}>
-    // isPending    → true while the server is saving the account
+export default function RegisterCustomerPage() {
     const [errorMessage, formAction, isPending] = useActionState(
-        registerArtisan,
+        registerCustomer,
         undefined,
     );
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.card}>
-                <HandcraftedLogo />
-                <h2 className={styles.title}>Create an Account</h2>
-                <p style={{ color: '#6A7F92', fontSize: '14px', marginBottom: '8px' }}>
-                    Join Handcrafted Haven as an artisan seller.
+                
+                <h2 className={styles.title}>Join as a Customer</h2>
+                <p style={{ color: '#6A7F92', fontSize: '14px', marginBottom: '24px' }}>
+                    Create an account to support local artisans and track your orders.
                 </p>
 
                 <form action={formAction} className={styles.form}>
-
                     {/* Full name */}
                     <input
                         type="text"
@@ -69,7 +63,6 @@ export default function RegisterPage() {
                         autoComplete="new-password"
                     />
 
-                    {/* Show the error returned from registerArtisan() if any */}
                     {errorMessage && (
                         <p
                             role="alert"
@@ -86,11 +79,10 @@ export default function RegisterPage() {
                         disabled={isPending}
                         style={{ opacity: isPending ? 0.7 : 1 }}
                     >
-                        {isPending ? 'Creating account...' : 'Create Account'}
+                        {isPending ? 'Creating account...' : 'Create Customer Account'}
                     </button>
                 </form>
 
-                {/* Link back to sign-in for artisans who already have an account */}
                 <p style={{ marginTop: '20px', fontSize: '14px', color: '#6A7F92' }}>
                     Already have an account?{' '}
                     <Link href="/signin" style={{ color: '#1E4D4F', fontWeight: 600 }}>

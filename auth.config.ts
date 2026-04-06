@@ -10,9 +10,13 @@ export const authConfig = {
         authorized({ auth, request: { nextUrl } }) {
             const isLoggedIn = !!auth?.user;
 
+            const isReviewPage = nextUrl.pathname.includes('/review'); //Reviews requires authentication
+
             const isProtectedPage =
-                nextUrl.pathname.startsWith('/artisans') ||
-                nextUrl.pathname.startsWith('/dashboard');
+                //nextUrl.pathname.startsWith('/artisans') || biographies are now public
+
+                nextUrl.pathname.startsWith('/dashboard') ||
+                isReviewPage;
                 
                 const isOnRegister = nextUrl.pathname === '/register';
                 const isOnSignIn = nextUrl.pathname === '/signin';
