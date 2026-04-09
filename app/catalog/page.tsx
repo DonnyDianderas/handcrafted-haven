@@ -1,14 +1,13 @@
 import styles from "./catalog.module.css";
-import Image from "next/image";
-import Link from "next/link"; 
-import { sql } from '@vercel/postgres'; 
+import { sql } from '@vercel/postgres';
 import { playfair } from "@/app/ui/fonts";
+import ProductCard from "@/app/ui/products/ProductCard";
 
-export default async function CatalogPage({ searchParams, }: {searchParams: {sort?: string};}) {
+export default async function CatalogPage({ searchParams, }: { searchParams: { sort?: string }; }) {
   const params = await searchParams;
   const sort = params.sort === "desc" ? "desc" : "asc";
 
-  const { rows: products } = 
+  const { rows: products } =
     sort === "desc"
       ? await sql`SELECT * FROM products ORDER BY price DESC`
       : await sql`SELECT * FROM products ORDER BY price ASC`;
@@ -29,23 +28,14 @@ export default async function CatalogPage({ searchParams, }: {searchParams: {sor
 
       <div className={styles.grid}>
         {products.map((product) => (
-          <div key={product.id} className={styles.card}>
-            <div className={styles.imageWrapper}>
-              <Image
-                src={product.image_url}
-                alt={product.name}
-                fill
-                className={styles.img}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            </div>
-            <h3 className={playfair.className}>{product.name}</h3>
-            <p className={styles.price}>USD {Number(product.price).toFixed(2)}</p>
-            
-            <Link href={`/catalog/${product.id}`}>
-              <button className={styles.button}>View Details</button>
-            </Link>
-          </div>
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            price={product.price}
+            image_url={product.image_url}
+            artisan_id={product.artisan_id}
+          />
         ))}
       </div>
     </section>

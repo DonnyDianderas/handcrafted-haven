@@ -3,8 +3,8 @@
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { auth, signIn, signOut } from '@/auth'; 
-import { AuthError } from 'next-auth';  
+import { auth, signIn, signOut } from '@/auth';
+import { AuthError } from 'next-auth';
 
 export type State = {
   message?: string | null;
@@ -67,22 +67,22 @@ export async function authenticate(
   const password = formData.get('password') as string;
 
   try {
-    
-    const user = await getUser(email); 
+
+    const user = await getUser(email);
 
     if (!user) {
       return 'Wrong email or password. Please try again.';
     }
 
-    const destination = (user as any).role === 'customer' 
-      ? '/dashboard/customer' 
+    const destination = (user as any).role === 'customer'
+      ? '/dashboard/customer'
       : '/dashboard';
 
-    
+
     await signIn('credentials', {
       email,
       password,
-      redirectTo: destination, 
+      redirectTo: destination,
     });
 
   } catch (error) {
@@ -94,7 +94,7 @@ export async function authenticate(
           return 'Something went wrong.';
       }
     }
-    
+
     throw error;
   }
 }
@@ -158,7 +158,7 @@ export async function registerArtisan(
       )
     `;
   } catch (error) {
-    console.error('SERVER ACTION ERROR:', error); 
+    console.error('SERVER ACTION ERROR:', error);
     return `Database Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
   }
 
@@ -184,7 +184,7 @@ export async function logout() {
 
 // ── Update Artisan Profile (Biography and Name) ─────────────────────────────
 export async function updateArtisanProfile(
-  id: string, 
+  id: string,
   formData: FormData
 ) {
   const name = formData.get('name') as string;
@@ -212,7 +212,7 @@ export async function createReview(
 ) {
   const rating = Number(formData.get("rating") as string);
   let reviewText = (formData.get("review-text") as string)?.trim();
-  
+
   const customerId = formData.get("customerId") as string;
 
   try {
@@ -229,12 +229,12 @@ export async function createReview(
       VALUES (${id}, ${rating}, ${reviewText}, ${customerId})
     `;
 
-  revalidatePath(`/catalog/${id}`);
-  revalidatePath('/dashboard/customer/reviews');
+    revalidatePath(`/catalog/${id}`);
+    revalidatePath('/dashboard/customer/reviews');
 
   } catch (e) {
     console.error((e as Error).message);
-    
+
   }
 
   redirect(`/catalog/${id}`);
@@ -252,21 +252,21 @@ export async function registerCustomer(prevState: string | undefined, formData: 
   try {
     const bcrypt = await import('bcryptjs');
     const hashedPassword = await bcrypt.hash(password, 10);
-    const id = crypto.randomUUID(); 
+    const id = crypto.randomUUID();
 
     await sql`
       INSERT INTO customers (id, name, email, password)
       VALUES (${id}, ${name}, ${email}, ${hashedPassword})
     `;
-    
+
     await signIn('credentials', { email, password, redirectTo: '/catalog' });
 
   } catch (error) {
-   
+
     if (error instanceof Error && error.message.includes('NEXT_REDIRECT')) {
-      throw error; 
+      throw error;
     }
-    
+
     console.error(error);
     return "Failed to create customer.";
   }
