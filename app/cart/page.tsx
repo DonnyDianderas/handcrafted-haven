@@ -61,7 +61,7 @@ export default function CartPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={`${styles.title} ${playfair.className}`}>Your Cart</h1>
-        <button 
+        <button
           onClick={handleClearCart}
           className={styles.clearCartBtn}
         >
@@ -86,7 +86,7 @@ export default function CartPage() {
               <div className={styles.itemDetails}>
                 <h3 className={styles.itemName}>{item.name}</h3>
                 <p className={styles.itemPrice}>USD {Number(item.price).toFixed(2)}</p>
-                <Link 
+                <Link
                   href={`/artisans/${item.artisan_id}`}
                   className={styles.artisanLink}
                 >
@@ -131,27 +131,27 @@ export default function CartPage() {
         <div className={styles.cartSummary}>
           <div className={styles.summaryCard}>
             <h2 className={`${styles.summaryTitle} ${playfair.className}`}>Order Summary</h2>
-            
+
             <div className={styles.summaryRow}>
               <span>Subtotal ({cart.itemCount} items)</span>
               <span>USD {cart.total.toFixed(2)}</span>
             </div>
-            
+
             <div className={styles.summaryRow}>
               <span>Shipping</span>
               <span>Calculated at checkout</span>
             </div>
-            
+
             <div className={styles.summaryDivider} />
-            
+
             <div className={`${styles.summaryRow} ${styles.totalRow}`}>
               <span>Total</span>
               <span>USD {cart.total.toFixed(2)}</span>
             </div>
 
-            <button className={styles.checkoutBtn}>
+            <Link href="/checkout" className={styles.checkoutBtn}>
               Proceed to Checkout
-            </button>
+            </Link>
 
             <Link href="/catalog" className={styles.continueLink}>
               Continue Shopping
