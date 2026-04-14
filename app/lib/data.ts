@@ -49,3 +49,22 @@ export async function fetchReviewsByCustomerId(customerId: string) {
     throw new Error('Failed to fetch user reviews.');
   }
 }
+
+// Fetch reviews for a specific product
+export async function fetchReviewsByProductId(productId: string) {
+  try {
+    const data = await sql`
+      SELECT
+        reviews.id,
+        reviews.rating,
+        reviews.review_text,
+        customers.name
+      FROM reviews
+      JOIN customers ON reviews.customer_id = customers.id
+      WHERE reviews.product_id = ${productId}
+    `;
+    return data.rows;
+  } catch (error) {
+    console.error(`Database Error: ${error}`);
+  }
+}

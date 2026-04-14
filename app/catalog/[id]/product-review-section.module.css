@@ -1,0 +1,22 @@
+.reviewContainer {
+    max-width: 1100px;
+    margin: -60px auto 0;
+    padding: 0 24px 80px;
+}
+
+.reviewGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+}
+
+.review {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 60px;
+    align-items: start;
+
+    & p {
+        grid-column: 1 / 3;
+    }
+}
