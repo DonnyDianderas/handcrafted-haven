@@ -88,15 +88,160 @@
   opacity: 1;
 }
 
+.toggleButton {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  font-size: 0.875rem;
+  font-family: inherit;
+  margin-bottom: 1rem;
+}
+
+.toggleButton:hover {
+  opacity: 0.8;
+}
+
 .filterForm {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  align-items: flex-end;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.filterFormClosed {
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+}
+
+.filterFormOpen {
+  max-height: 500px;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .filterFormOpen {
+    max-height: 600px;
+  }
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  min-width: 160px;
+  flex: 0 1 auto;
+}
+
+.filterGroup label {
+  font-weight: 600;
+  color: #1a202c;
+  font-size: 0.875rem;
+  font-family: inherit;
+}
+
+.filterGroup select,
+.filterGroup input {
+  padding: 0.5rem;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  background: white;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.filterGroup select:focus,
+.filterGroup input:focus {
+  outline: none;
+  border-color: #1a202c;
+  box-shadow: 0 0 0 1px #1a202c;
+}
+
+.filterButton {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  align-self: flex-end;
+  font-size: 0.875rem;
+  font-family: inherit;
+}
+
+.filterButton:hover {
+  opacity: 0.8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .filterForm {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .filterGroup {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .filterButton {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .toggleButton {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filterForm {
+    padding: 0;
+    gap: 1.25rem;
+  }
+  
+  .filterGroup {
+    width: 100%;
+  }
+  
+  .filterGroup select,
+  .filterGroup input,
+  .filterButton,
+  .toggleButton {
+    padding: 1rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .filterGroup label {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .toggleButton {
+    margin-bottom: 1.25rem;
+  }
 }
 
 .dropdown {
   padding: 0.5rem;
   border-radius: 4px;
-  font-size: 1rem;
 }
