@@ -3,6 +3,7 @@ import { sql } from '@vercel/postgres';
 import { playfair } from "@/app/ui/fonts";
 import ProductCard from "@/app/ui/products/ProductCard";
 import FilterToggle from "./FilterToggle";
+import FilterForm from "./FilterForm";
 
 export default async function CatalogPage({ searchParams, }: { 
   searchParams: { 
@@ -50,7 +51,7 @@ export default async function CatalogPage({ searchParams, }: {
       <h1 className={`${styles.title} ${playfair.className}`}>Our Collection</h1>
 
       <FilterToggle>
-        <form method="get" className={styles.filterForm}>
+        <FilterForm>
           <div className={styles.filterGroup}>
             <label htmlFor="category">Category:</label>
             <select id="category" name="category" defaultValue={category}>
@@ -95,23 +96,28 @@ export default async function CatalogPage({ searchParams, }: {
               <option value="desc">Price: High to Low</option>
             </select>
           </div>
-
-          <button type="submit" className={styles.filterButton}>Apply Filters</button>
-        </form>
+        </FilterForm>
       </FilterToggle>
 
-      <div className={styles.grid}>
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            price={product.price}
-            image_url={product.image_url}
-            artisan_id={product.artisan_id}
-          />
-        ))}
-      </div>
+      {products.length > 0 ? (
+        <div className={styles.grid}>
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              image_url={product.image_url}
+              artisan_id={product.artisan_id}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className={styles.noResults}>
+          <h3>No products found</h3>
+          <p>Try adjusting your filters to see more products.</p>
+        </div>
+      )}
     </section>
   );
 }

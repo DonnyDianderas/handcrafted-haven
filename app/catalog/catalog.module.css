@@ -188,6 +188,25 @@
   opacity: 0.8;
 }
 
+.resetButton {
+  background: transparent;
+  color: #666;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  align-self: flex-end;
+  font-size: 0.875rem;
+  font-family: inherit;
+}
+
+.resetButton:hover {
+  border-color: #1a202c;
+  color: #1a202c;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .filterForm {
@@ -202,6 +221,11 @@
   }
   
   .filterButton {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .resetButton {
     align-self: stretch;
     width: 100%;
   }
@@ -225,6 +249,7 @@
   .filterGroup select,
   .filterGroup input,
   .filterButton,
+  .resetButton,
   .toggleButton {
     padding: 1rem;
     font-size: 1rem;
@@ -239,6 +264,24 @@
   .toggleButton {
     margin-bottom: 1.25rem;
   }
+}
+
+.noResults {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+}
+
+.noResults h3 {
+  font-size: 1.5rem;
+  color: #1a202c;
+  margin-bottom: 1rem;
+  font-family: inherit;
+}
+
+.noResults p {
+  font-size: 1rem;
+  margin: 0;
 }
 
 .dropdown {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./catalog.module.css";
 
 interface FilterToggleProps {
@@ -9,6 +9,21 @@ interface FilterToggleProps {
 
 const FilterToggle: React.FC<FilterToggleProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResetClick = () => {
+      const resetButton = document.querySelector(`.${styles.resetButton}`);
+      if (resetButton) {
+        resetButton.addEventListener('click', () => {
+          window.location.href = '/catalog';
+        });
+      }
+    };
+
+    if (isOpen) {
+      handleResetClick();
+    }
+  }, [isOpen]);
 
   return (
     <div>
